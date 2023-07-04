@@ -4,8 +4,8 @@
   "description": "## Задание Оптимизировать страницу",
   "main": "index.js",
   "scripts": {
-    "start": "parcel src/index.html",
-    "build": "parcel build src/index.html --public-url 'shri-performance-hw-2023' --no-cache",
+    "start": "parcel src/index.html --no-cache",
+    "build": "parcel build src/index.html --public-url /shri-performance-hw-2023/ --no-cache",
     "deploy": "npm run build && gh-pages -d dist"
   },
   "keywords": [],
@@ -14,7 +14,7 @@
   "dependencies": {
     "@babel/preset-env": "^7.22.6",
     "babel-preset-react": "^6.24.1",
-    "bootstrap": "^5.3.0",
+    "bootstrap": "^5.2.0",
     "parcel-bundler": "^1.12.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
