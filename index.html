@@ -38,8 +38,8 @@
 <script src="vendors/babel.min.js"></script>
 <script type="text/babel">
     function Header() {
-        let [expanded, setExpanded] = React.useState(false);
-        let [toggled, setToggled] = React.useState(false);
+        const [expanded, setExpanded] = React.useState(false);
+        const [toggled, setToggled] = React.useState(false);
 
         const onClick = () => {
             if (!toggled) {
@@ -178,7 +178,7 @@
         }
     };
     const TABS_KEYS = Object.keys(TABS);
-    for (let i = 0; i < 6; ++i) {
+    for (let i = 0; i < 0; ++i) {
         TABS.all.items = [].concat(TABS.all.items, TABS.all.items);
     }
 
