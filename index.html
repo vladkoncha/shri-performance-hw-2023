@@ -78,8 +78,7 @@
         React.useEffect(() => {
             if (onSize) {
                 const width = ref.current.offsetWidth;
-                const height = ref.current.offsetHeight;
-                onSize({width, height});
+                onSize(width);
             }
         });
 
@@ -202,10 +201,10 @@
             }]
         }
     };
+    const TABS_KEYS = Object.keys(TABS);
     for (let i = 0; i < 6; ++i) {
         TABS.all.items = [].concat(TABS.all.items, TABS.all.items);
     }
-    const TABS_KEYS = Object.keys(TABS);
 
     function Main() {
         const ref = React.useRef();
@@ -224,19 +223,19 @@
             setActiveTab(event.target.value);
         };
 
-        let sizes = [];
+        let widths = [];
         const onSize = size => {
-            sizes = [...sizes, size];
+            widths = [...widths, size];
         };
 
         React.useEffect(() => {
-            const sumWidth = sizes.reduce((acc, item) => acc + item.width, 0);
+            const sumWidth = (widths[0] ?? 0) * widths.length;
 
             const newHasRightScroll = sumWidth > ref.current.offsetWidth;
             if (newHasRightScroll !== hasRightScroll) {
                 setHasRightScroll(newHasRightScroll);
             }
-        }, [sizes]);
+        }, [widths]);
 
         const onArrowCLick = () => {
             const scroller = ref.current.querySelector('.section__panel:not(.section__panel_hidden)');
