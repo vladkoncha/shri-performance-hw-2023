@@ -106,6 +106,6 @@ export const TABS = {
     }
 };
 export const TABS_KEYS = Object.keys(TABS);
-for (let i = 0; i < 6; ++i) {
+for (let i = 0; i < 0; ++i) {
     TABS.all.items = [].concat(TABS.all.items, TABS.all.items);
 }
