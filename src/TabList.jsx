@@ -1,10 +1,9 @@
 import React from "react";
-import { TABS, TABS_KEYS } from "./tabs";
 
-function TabList({ activeTab, setActiveTab }) {
+function TabList({ activeTab, setActiveTab, tabs, tabsKeys }) {
   return (
     <ul role="tablist" className="section__tabs">
-      {TABS_KEYS.map((key) => (
+      {tabsKeys.map((key) => (
         <li
           key={key}
           role="tab"
@@ -17,7 +16,7 @@ function TabList({ activeTab, setActiveTab }) {
           aria-controls={`panel_${key}`}
           onClick={() => setActiveTab(key)}
         >
-          {TABS[key].title}
+          {tabs[key].title}
         </li>
       ))}
     </ul>

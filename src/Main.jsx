@@ -2,7 +2,7 @@ import React from "react";
 import Devices from "./Devices";
 import Event from "./Event";
 
-function Main() {
+function Main(props) {
   return (
     <main className="main">
       <section className="section main__general">
@@ -100,7 +100,7 @@ function Main() {
         </ul>
       </section>
 
-      <Devices />
+      <Devices  {...props}/>
     </main>
   );
 }

@@ -1,17 +1,17 @@
 import React, { useRef } from "react";
-import { TABS_KEYS } from "./tabs";
 import TabPanel from "./TabPanel";
 
-function TabsPanel({ activeTab }) {
+function TabsPanel({ activeTab, tabs, tabsKeys }) {
   const ref = useRef();
   return (
       <div className="section__panel-wrapper" ref={ref}>
-        {TABS_KEYS.map((key) => (
+        {tabsKeys.map((key) => (
             <TabPanel
                 key={key}
                 parentRef={ref}
                 activeTab={activeTab}
                 tabKey={key}
+                tabs={tabs}
             />
         ))}
       </div>

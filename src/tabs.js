@@ -106,7 +106,6 @@ const TABS = {
     }
 };
 for (let i = 0; i < 6; ++i) {
-    console.log("sss")
     TABS.all.items = [].concat(TABS.all.items, TABS.all.items);
 }
 const TABS_KEYS = Object.keys(TABS);

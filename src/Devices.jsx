@@ -4,9 +4,8 @@ import React from "react";
 import TabList from "./TabList";
 import TabsPanel from "./TabsPanel";
 import { useEffect, useRef, useState } from "react";
-import { TABS, TABS_KEYS } from './tabs';
 
-function Devices() {
+function Devices({ tabs, tabsKeys }) {
   const [activeTab, setActiveTab] = useState("all");
   const initedRef = useRef(false);
 
@@ -30,15 +29,20 @@ function Devices() {
           defaultValue="all"
           onInput={onSelectInput}
         >
-          {TABS_KEYS.map((key) => (
+          {tabsKeys.map((key) => (
             <option key={key} value={key}>
-              {TABS[key].title}
+              {tabs[key].title}
             </option>
           ))}
         </select>
-        <TabList activeTab={activeTab} setActiveTab={setActiveTab} />
+        <TabList
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          tabs={tabs}
+          tabsKeys={tabsKeys}
+        />
       </div>
-      <TabsPanel activeTab={activeTab} />
+      <TabsPanel activeTab={activeTab} tabs={tabs} tabsKeys={tabsKeys} />
     </section>
   );
 }

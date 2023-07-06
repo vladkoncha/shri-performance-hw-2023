@@ -1,12 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { TABS } from "./tabs";
 import Event from "./Event";
 import { createPortal } from "react-dom";
 
-const TabPanel = ({ tabKey, activeTab, parentRef }) => {
+const TabPanel = ({ tabKey, activeTab, parentRef, tabs }) => {
   const [hasRightScroll, setHasRightScroll] = useState(false);
   const observerRef = useRef();
-  const [items, setItems] = useState(TABS[tabKey].items);
+  const [items, setItems] = useState(tabs[tabKey].items);
 
   const onArrowCLick = useCallback(() => {
     const scroller = parentRef.current.querySelector(

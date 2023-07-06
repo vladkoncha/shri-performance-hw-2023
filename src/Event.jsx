@@ -5,8 +5,6 @@ import React, { forwardRef, useImperativeHandle, useRef } from "react";
 const Event = forwardRef((props, ref) => {
   const eventRef = useRef();
 
-  console.log("event");
-
   useImperativeHandle(ref, () => eventRef.current);
 
   return (
