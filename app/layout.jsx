@@ -1,14 +1,6 @@
 import "../reset.css";
-import "../fonts.css";
 import "../styles.css";
-import localFont from "next/font/local";
 
-const lato = localFont({
-  src: "./lato.woff2",
-  weight: "400",
-  style: "normal",
-  display: "swap",
-});
 
 export const metadata = {
   title: "Яндекс.Дом",

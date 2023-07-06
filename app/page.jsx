@@ -1,4 +1,5 @@
-import "../fonts.css";
+import "../reset.css";
+import "../styles.css";
 import Header from "../src/Header";
 import Main from "../src/Main";
 import React from "react";
