@@ -1,20 +1,16 @@
-import React from "react";
-import {useEffect, useRef} from "react";
+"use client";
 
-function Event(props) {
-  const ref = useRef();
+import React, { forwardRef, useImperativeHandle, useRef } from "react";
 
-  const { onSize } = props;
+const Event = forwardRef((props, ref) => {
+  const eventRef = useRef();
 
-  useEffect(() => {
-    if (onSize) {
-      const width = ref.current.offsetWidth;
-      onSize(width);
-    }
-  });
+  console.log("event");
+
+  useImperativeHandle(ref, () => eventRef.current);
 
   return (
-    <li ref={ref} className={"event" + (props.slim ? " event_slim" : "")}>
+    <li ref={eventRef} className={"event" + (props.slim ? " event_slim" : "")}>
       <button className="event__button">
         <span
           className={`event__icon event__icon_${props.icon}`}
@@ -28,6 +24,6 @@ function Event(props) {
       </button>
     </li>
   );
-}
+});
 
-export default Event;
+export default React.memo(Event);

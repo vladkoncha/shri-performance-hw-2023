@@ -4,14 +4,16 @@
   "description": "## Задание Оптимизировать страницу",
   "main": "index.js",
   "scripts": {
-    "start": "rm -rf dist && parcel src/index.html --no-cache",
-    "build": "rm -rf dist && parcel build src/index.html --public-url /shri-performance-hw-2023/ --no-cache",
-    "deploy": "npm run build && gh-pages -d dist"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "next": "^13.4.8",
     "parcel-bundler": "^1.12.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

@@ -1,27 +1,15 @@
-import React from "react";
-import { TABS, TABS_KEYS } from "./tabs";
-import { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { TABS } from "./tabs";
 import Event from "./Event";
+import { createPortal } from "react-dom";
 
-function TabPanel({ activeTab }) {
+const TabPanel = ({ tabKey, activeTab, parentRef }) => {
   const [hasRightScroll, setHasRightScroll] = useState(false);
-  const ref = useRef();
+  const observerRef = useRef();
+  const [items, setItems] = useState(TABS[tabKey].items);
 
-  let widths = 0;
-  const onSize = (size) => {
-    widths += size;
-  };
-
-  useEffect(() => {
-    console.log(widths);
-    const newHasRightScroll = widths > ref.current.offsetWidth;
-    if (newHasRightScroll !== hasRightScroll) {
-      setHasRightScroll(newHasRightScroll);
-    }
-  });
-
-  const onArrowCLick = () => {
-    const scroller = ref.current.querySelector(
+  const onArrowCLick = useCallback(() => {
+    const scroller = parentRef.current.querySelector(
       ".section__panel:not(.section__panel_hidden)"
     );
     if (scroller) {
@@ -30,33 +18,46 @@ function TabPanel({ activeTab }) {
         behavior: "smooth",
       });
     }
-  };
+  }, [parentRef]);
+
+  useEffect(() => {
+    setHasRightScroll(
+      (observerRef.current?.offsetWidth ?? 0) * items.length >
+        parentRef.current.offsetWidth
+    );
+  });
+
   return (
-    <div className="section__panel-wrapper" ref={ref}>
-      {TABS_KEYS.map((key) => (
-        <div
-          key={key}
-          role="tabpanel"
-          className={
-            "section__panel" +
-            (key === activeTab ? "" : " section__panel_hidden")
-          }
-          aria-hidden={key === activeTab ? "false" : "true"}
-          id={`panel_${key}`}
-          aria-labelledby={`tab_${key}`}
-        >
-          <ul className="section__panel-list">
-            {TABS[key].items.map((item, index) => (
-              <Event key={index} {...item} onSize={onSize} />
-            ))}
-          </ul>
-        </div>
-      ))}
-      {hasRightScroll && (
-        <div className="section__arrow" onClick={onArrowCLick}></div>
-      )}
-    </div>
+    <>
+      <div
+        key={tabKey}
+        role="tabpanel"
+        className={
+          "section__panel" +
+          (tabKey === activeTab ? "" : " section__panel_hidden")
+        }
+        aria-hidden={tabKey === activeTab ? "false" : "true"}
+        id={`panel_${tabKey}`}
+        aria-labelledby={`tab_${tabKey}`}
+      >
+        <ul className="section__panel-list">
+          {items.map((item, index) => (
+            <Event
+              ref={index === 0 && tabKey === activeTab ? observerRef : null}
+              key={index}
+              {...item}
+            />
+          ))}
+        </ul>
+      </div>
+      {hasRightScroll &&
+        createPortal(
+          <div className="section__arrow" onClick={onArrowCLick}></div>,
+          document.body.querySelector(".section__panel-wrapper") ??
+            document.body
+        )}
+    </>
   );
-}
+};
 
 export default TabPanel;
