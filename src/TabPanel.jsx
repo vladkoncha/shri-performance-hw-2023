@@ -19,12 +19,14 @@ const TabPanel = ({ tabKey, activeTab, parentRef, tabs }) => {
     }
   }, [parentRef]);
 
+
   useEffect(() => {
     setHasRightScroll(
       (observerRef.current?.offsetWidth ?? 0) * items.length >
         parentRef.current.offsetWidth
     );
   });
+
 
   return (
     <>

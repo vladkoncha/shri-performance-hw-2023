@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 
 function Devices({ tabs, tabsKeys }) {
   const [activeTab, setActiveTab] = useState("all");
+
   const initedRef = useRef(false);
 
   useEffect(() => {
@@ -15,6 +16,7 @@ function Devices({ tabs, tabsKeys }) {
       setActiveTab(new URLSearchParams(location.search).get("tab") || "all");
     }
   });
+
 
   const onSelectInput = (event) => {
     setActiveTab(event.target.value);
@@ -43,6 +45,7 @@ function Devices({ tabs, tabsKeys }) {
         />
       </div>
       <TabsPanel activeTab={activeTab} tabs={tabs} tabsKeys={tabsKeys} />
+
     </section>
   );
 }
