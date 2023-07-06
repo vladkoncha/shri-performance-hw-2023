@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+"use client";
+
+import React from "react";
+import { useState } from "react";
+
 
 function Header() {
   const [expanded, setExpanded] = useState(false);

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { forwardRef, useImperativeHandle, useRef } from "react";
 
 const Event = forwardRef((props, ref) => {
@@ -22,4 +24,4 @@ const Event = forwardRef((props, ref) => {
   );
 });
 
-export default Event;
+export default React.memo(Event);

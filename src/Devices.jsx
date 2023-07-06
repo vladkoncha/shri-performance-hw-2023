@@ -1,10 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+"use client";
+
+import React from "react";
 import TabList from "./TabList";
 import TabsPanel from "./TabsPanel";
-import { TABS, TABS_KEYS } from "./tabs";
+import { useEffect, useRef, useState } from "react";
 
-function Devices() {
-  const [activeTab, setActiveTab] = useState("");
+function Devices({ tabs, tabsKeys }) {
+  const [activeTab, setActiveTab] = useState("all");
+
   const initedRef = useRef(false);
 
   useEffect(() => {
@@ -12,7 +15,8 @@ function Devices() {
       initedRef.current = true;
       setActiveTab(new URLSearchParams(location.search).get("tab") || "all");
     }
-  }, []);
+  });
+
 
   const onSelectInput = (event) => {
     setActiveTab(event.target.value);
@@ -27,15 +31,21 @@ function Devices() {
           defaultValue="all"
           onInput={onSelectInput}
         >
-          {TABS_KEYS.map((key) => (
+          {tabsKeys.map((key) => (
             <option key={key} value={key}>
-              {TABS[key].title}
+              {tabs[key].title}
             </option>
           ))}
         </select>
-        <TabList activeTab={activeTab} setActiveTab={setActiveTab} />
+        <TabList
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          tabs={tabs}
+          tabsKeys={tabsKeys}
+        />
       </div>
-      <TabsPanel activeTab={activeTab} />
+      <TabsPanel activeTab={activeTab} tabs={tabs} tabsKeys={tabsKeys} />
+
     </section>
   );
 }

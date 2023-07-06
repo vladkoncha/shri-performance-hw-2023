@@ -1,4 +1,4 @@
-export const TABS = {
+const TABS = {
     all: {
         title: 'Все',
         items: [{
@@ -105,7 +105,8 @@ export const TABS = {
         }]
     }
 };
-export const TABS_KEYS = Object.keys(TABS);
-for (let i = 0; i < 0; ++i) {
+for (let i = 0; i < 6; ++i) {
     TABS.all.items = [].concat(TABS.all.items, TABS.all.items);
 }
+const TABS_KEYS = Object.keys(TABS);
+export {TABS, TABS_KEYS};
