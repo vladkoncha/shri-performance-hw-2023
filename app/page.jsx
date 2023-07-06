@@ -14,9 +14,9 @@ export default function Page() {
   };
 
   return (
-    <>
+    <div id={"app"}>
       <Header />
       <Main {...props} />
-    </>
+    </div>
   );
 }
